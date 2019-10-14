@@ -1,3 +1,9 @@
+/**
+ * TODO: Game objects should have their own states.
+ *  Refactor them from just domElement: Object
+ *  to {name: String, domElement: Object, state: Object}
+ * */
+
 /* ENGINE CONSTANTS */
 const constants = {
   FPS: 30,
@@ -14,12 +20,22 @@ const constants = {
 /* STATES */
 let gameObjects = [];
 let gameState = {
+  isGameOn: false,
   gameLoop: null,
   gameObjects: [],
   loopArray: [
+    dummyFunction, // DELETE
     applyGravity,
   ],
 };
+
+// DELETE
+function dummyFunction() {
+  let el = document.getElementById("player");
+  let speed = 50;
+  let newPosition = Math.round( getPositionValue(el) + ( speed * ( deltaTime()/1000 ) ));
+  setPositionValue(el, newPosition);
+}
 
 /* HELPERS */
 /**
@@ -81,11 +97,11 @@ function deltaTime() {
 }
 
 /**
- * The main game loop that executes an array of functions.
+ * The main game loop that executes an array of functions. In delta time.
  * @functionArray Array of functions.
  * */
 function gameLoop(functionArray) {
-  setInterval(() => {
+  return setInterval(() => {
     for (let i of functionArray) {
       i();
     }
@@ -98,7 +114,7 @@ function gameLoop(functionArray) {
  * */
 function applyGravity() {
   let physicsObjects = document.getElementsByClassName("physics-object");
-  let deltaYPosition = constants.GRAVITY*(deltaTime()/1000);
+  let gravityYForce = constants.GRAVITY*(deltaTime()/1000);
   for (let i of physicsObjects) {
     getPositionValue(i) <= 0
       ? console.log("Below canvas.")
@@ -111,24 +127,29 @@ function applyGravity() {
  * Initializes Game Objects, and starts the game
  * */
 function startGame(){
+  if (gameState.isGameOn) {
+    return false;
+  }
+  gameState.isGameOn = true;
   gameState.gameObjects = gameObjects;
   renderElements("level-1");
   // Starts the game loop.
   gameState.gameLoop= gameLoop(gameState.loopArray);
-
-  setInterval(() => {
-    setPositionValue(document.getElementById("player"), 5)
-    }, 200
-  )
 }
 
 function stopGame(){
+  if (!gameState.isGameOn) {
+    return false;
+  }
+  gameState.isGameOn = false;
   // Stops the game loop.
   clearInterval(gameState.gameLoop);
+  //gameState.gameLoop = null;
   // Removes DOM elements of "level-1"
   let element = document.getElementById("level-1");
   let child = element.lastElementChild;
   while (child) {
+    child.style = "";
     element.removeChild(child);
     child = element.lastElementChild;
   }
@@ -168,7 +189,6 @@ function renderElements (levelId){
 /* GAME SCRIPTS */
 document.getElementById("startButton").addEventListener("click", startGame);
 document.getElementById("stopButton").addEventListener("click", stopGame);
-
 gameObjects.push(gameObject("player", ["physics-object", "player"]));
 
 
