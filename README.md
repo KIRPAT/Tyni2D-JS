@@ -1,12 +1,12 @@
-#TODO
+# TODO
 **Notes:** 
 - The project will be in Vanilla JS. I believe no ES6 allowed, since the documentations they have sent are not showing classes.
 
-###Scene Checklist:
+### Scene Checklist:
 -[x] Set up HTML-CSS-JS
 -[x] Set up a basic canvas.
 
-###Game Logic:
+### Game Logic:
 -[ ] Game Objects
     -[ ] Basic Object (root of all objects)
         - Write a function that takes following arguments...  
@@ -21,7 +21,7 @@
     - [ ] Injecting elements (actors, terrain).
         * To make them all subject to gravity, attach "physics-object" class tag.
         * Keep all physics objects in the.
-###Game Loop:
+### Game Loop:
 -[ ] A game loop that executes an array of functions.
     - [ ] The loop should start working when the document is ready.  
 -[ ] Implement game time.
@@ -29,7 +29,7 @@
         - Physics objects should be dependent to Delta Time.  
             - TODO: Take the global frame-rate constant (30 or 60) and divide 1000ms (1 sec) to it.
         - The game should be running in 30 or 60 FPS.
-###Physics Checklist:
+### Physics Checklist:
 -[ ] Implement global physics.
     -[ ] Implement 
     -[ ] The collision should be limited to main canvas.
