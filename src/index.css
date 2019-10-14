@@ -55,7 +55,9 @@ html {
 
 /* GAME OBJECTS */
 .player{
+  position: absolute;
   height: 20px;
   width: 20px;
   background-color: cyan;
+  bottom: 20px;
 }

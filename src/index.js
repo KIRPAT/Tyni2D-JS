@@ -13,7 +13,6 @@ const constants = {
 
 /* STATES */
 let gameObjects = [];
-
 let gameState = {
   gameLoop: null,
   gameObjects: [],
@@ -113,10 +112,14 @@ function applyGravity() {
  * */
 function startGame(){
   gameState.gameObjects = gameObjects;
-  // TODO: Insert DOM elements to the document.
-
-  // Start game loop.
+  renderElements("level-1");
+  // Starts the game loop.
   gameState.gameLoop= gameLoop(gameState.loopArray);
+
+  setInterval(() => {
+    setPositionValue(document.getElementById("player"), 5)
+    }, 200
+  )
 }
 
 function stopGame(){
@@ -129,13 +132,13 @@ function stopGame(){
     element.removeChild(child);
     child = element.lastElementChild;
   }
-  // Clear GameObjects from the game state.
+  // Clear Game Objects from the game state.
   gameState.gameObjects = [];
 }
 
 /* Game Objects */
 /**
- * Pushes a Game Object into the gameObjects array;
+ * Returns a Game Object into the gameObjects array;
  * @id String (becomes element.id)
  * @classNameArray String Array ["physics-object", "]
  * @position Object {
@@ -147,20 +150,26 @@ function gameObject(id, classNameArray) {
   let element = document.createElement("div");
   element.id = id;
   element.className = classNameArray.join(' ');
-  setPositionValue(element, 200);
-  gameObjects.push(element);
+  return element;
 }
 
 /* HTML MUTATIONS */
-function renderElements (){
-
+/**
+ * Renders gameState.GameObjects by injecting them to the DOM.
+ * @levelId is the element id of the scene.
+ * */
+function renderElements (levelId){
+  for (let i of gameState.gameObjects){
+    let level = document.getElementById(levelId);
+    level.insertBefore(i, level.childNodes[0]);
+  }
 }
 
 /* GAME SCRIPTS */
 document.getElementById("startButton").addEventListener("click", startGame);
 document.getElementById("stopButton").addEventListener("click", stopGame);
 
-
+gameObjects.push(gameObject("player", ["physics-object", "player"]));
 
 
 
