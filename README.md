@@ -7,8 +7,8 @@
 - [x] Set up a basic canvas.
 
 ### Game Logic:
-- [ ] Game Objects
-    - [ ] Basic Object (root of all objects)
+- [x] Game Objects
+    - [x] Basic Object (root of all objects)
         - Write a function that takes following arguments...  
             - name: String --> Becomes the ID of HTML element.  
             - objectTypeClass: String --> Actor || Terrain
@@ -17,15 +17,15 @@
             - Mass: Number --> Mass of the object.
         - ...and returns an object with following properties.
             - HTML string with inserted classes.
-- [ ] Ready up the scene mutator functions.
+- [x] Ready up the scene mutator functions.
     - [ ] Injecting elements (actors, terrain).
         * To make them all subject to gravity, attach "physics-object" class tag.
         * Keep all physics objects in the.
 ### Game Loop:
-- [ ] A game loop that executes an array of functions.
-    - [ ] The loop should start working when the document is ready.  
-- [ ] Implement game time.
-    - [ ] Frame Time & Delta Time (Real Time)
+- [x] A game loop that executes an array of functions.
+    - [x] The loop should start working when the document is ready.  
+- [x] Implement game time.
+    - [x] Frame Time & Delta Time (Real Time)
         - Physics objects should be dependent to Delta Time.  
             - TODO: Take the global frame-rate constant (30 or 60) and divide 1000ms (1 sec) to it.
         - The game should be running in 30 or 60 FPS.
