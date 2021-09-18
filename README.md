@@ -1,7 +1,3 @@
-# TODO
-**Notes:** 
-- The project will be in Vanilla JS. I believe no ES6 allowed, since the documentations they have sent are not showing classes.
-
 ### Scene Checklist:
 - [x] Set up HTML-CSS-JS
 - [x] Set up a basic canvas.
